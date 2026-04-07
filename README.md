@@ -202,11 +202,18 @@ pip install torch numpy scipy matplotlib
 
 Train the Struct2DispTransformer on synthetic data:
 
+```bash
+# Option 1: Run training script directly
+python disp_gen_train.v1.1.py
+```
+
+Or use programmatically:
+
 ```python
 import torch
 from torch.utils.data import DataLoader
 from utils.generate_data import SurfaceWaveDataset
-from disp_gen_train import train_struct2disp_transformer
+from disp_gen_train.v1_1 import train_struct2disp_transformer
 
 # Create synthetic dataset
 dataset = SurfaceWaveDataset(
