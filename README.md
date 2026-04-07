@@ -6,7 +6,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2604.04107-b31b1b.svg)](https://doi.org/10.48550/arXiv.2604.04107)
 [![Geophysics](https://img.shields.io/badge/field-seismology-green.svg)](https://en.wikipedia.org/wiki/Seismology)
 
-Official implementation of **"Physical Sensitivity Kernels Can Emerge in Data-Driven Forward Models: Evidence From Surface-Wave Dispersion"** (arXiv 2026).
+Official implementation of **"Physical Sensitivity Kernels Can Emerge in Data-Driven Forward Models: Evidence From Surface-Wave Dispersion"** (arXiv:2604.04107).
 
 This repository investigates whether data-driven neural networks used as surrogate forward models in geophysics recover only the data mapping or also the underlying physical sensitivity structure. Using surface-wave dispersion as a test case, we demonstrate that automatically differentiated gradients from neural network surrogates can recover the main depth-dependent structure of theoretical sensitivity kernels across a broad range of periods.
 
