@@ -8,7 +8,7 @@ or blocker language.
 
    Required destination: Zenodo, OSF, or a GitHub release with an archived DOI.
    The public repository URL currently used in the manuscript is
-   `https://github.com/cangyeone/physical-sensitivity-kernels`; a versioned DOI
+   `https://github.com/cangyeone/SurfFlow`; a versioned DOI
    has not yet been minted for the manuscript-specific artifact bundle.
 
 2. Upload large binary artifacts or provide approved checkpoint-access

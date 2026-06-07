@@ -226,7 +226,7 @@ def plot_example_profiles() -> None:
     if not path.exists():
         return
     data = np.load(path)
-    depth = np.linspace(0.0, 400.0, data["DI_Weak_in_prior_target"].shape[-1])
+    depth = np.arange(data["DI_Weak_in_prior_target"].shape[-1], dtype=np.float32) * 0.5
     regimes = ["in_prior", "boundary", "out_of_prior"]
     labels = ["In-prior", "Boundary", "Out-of-prior"]
     fig, axes = plt.subplots(1, 3, figsize=(7.0, 4.8), sharey=True)

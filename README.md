@@ -78,7 +78,7 @@ Key features:
 ## Project Structure
 
 ```
-physical-sensitivity-kernels/
+SurfFlow/
 ├── models/
 │   └── struct2disp_transformer.py       # Struct2DispTransformer forward model
 ├── utils/
@@ -103,8 +103,8 @@ physical-sensitivity-kernels/
 ## Installation
 
 ```bash
-git clone https://github.com/cangyeone/physical-sensitivity-kernels.git
-cd physical-sensitivity-kernels
+git clone https://github.com/cangyeone/SurfFlow.git
+cd SurfFlow
 pip install torch numpy scipy matplotlib
 ```
 
@@ -327,11 +327,11 @@ that transports samples from a simple prior $x_0 \sim \mathcal{N}(0, I)$ to the 
   url={https://arxiv.org/abs/2604.04107}
 }
 
-@software{physical_sensitivity_kernels_code,
+@software{SurfFlow_code,
   author = {Yu, Ziye and Cai, Yuqi and Liu, Xin},
   title = {Physical Sensitivity Kernels: Official Implementation},
   year = {2026},
-  url = {https://github.com/cangyeone/physical-sensitivity-kernels}
+  url = {https://github.com/cangyeone/SurfFlow}
 }
 ```
 
