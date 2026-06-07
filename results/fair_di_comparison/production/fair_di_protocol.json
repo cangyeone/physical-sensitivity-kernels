@@ -1,0 +1,151 @@
+{
+  "bootstrap": 2000,
+  "created_unix_time": 1780777273.982472,
+  "device": "mps",
+  "euler_steps": 24,
+  "intended_difference": "structural_prior_generator_only",
+  "n_envelope": 10000,
+  "n_test": 1024,
+  "posterior_samples": 64,
+  "seed": 642026,
+  "skip_dispersion_residuals": false,
+  "strong_checkpoint": "ckpt/fair_di_strong_full_seed642026/best.pt",
+  "strong_config": {
+    "batch_size": 64,
+    "cond_base_channels": 64,
+    "cond_dim": 256,
+    "device": "mps",
+    "dropout": 0.1,
+    "dz_km": 0.5,
+    "epoch_metrics_filename": "epoch_metrics.csv",
+    "epoch_metrics_jsonl": "epoch_metrics.jsonl",
+    "epochs": 24,
+    "eval_num_samples": 4,
+    "eval_num_steps": 24,
+    "fig_dir": "/Users/yuziye/Documents/GitHub/physical-sensitivity-kernels/figures/fair_di_strong_full_seed642026",
+    "flow_beta": 0.5,
+    "flow_hidden": 1024,
+    "grad_clip": 5.0,
+    "init_checkpoint": null,
+    "lambda_curvature": 0.01,
+    "lambda_rec": 0.5,
+    "lambda_slope": 0.05,
+    "log_every_steps": 100,
+    "log_filename": "train.log",
+    "lr": 0.0002,
+    "mask_augment": true,
+    "mask_augment_val": true,
+    "mask_hole_point_prob": 0.04,
+    "mask_internal_holes_max": 6,
+    "mask_random_max_width_s": 45.0,
+    "mask_random_min_width_s": 15.0,
+    "mask_window_preset_prob": 0.65,
+    "mask_window_presets": [
+      [
+        2.0,
+        40.0
+      ],
+      [
+        10.0,
+        30.0
+      ],
+      [
+        5.0,
+        35.0
+      ],
+      [
+        15.0,
+        45.0
+      ]
+    ],
+    "min_lr": 1e-06,
+    "n_train": 100000,
+    "n_val": 2048,
+    "num_workers": 4,
+    "plot_every_steps": 0,
+    "plot_num_samples": 16,
+    "resume": false,
+    "save_dir": "/Users/yuziye/Documents/GitHub/physical-sensitivity-kernels/ckpt/fair_di_strong_full_seed642026",
+    "seed": 642026,
+    "stats_batches": 64,
+    "tectonic_type": null,
+    "time_dim": 64,
+    "use_amp": true,
+    "val_every": 1,
+    "weight_decay": 0.0001,
+    "z_max_km": 150.0,
+    "z_max_num": 256
+  },
+  "test_sets": [
+    "boundary",
+    "in-prior",
+    "out-of-prior"
+  ],
+  "weak_checkpoint": "ckpt/fair_di_weak_full_seed642026/best.pt",
+  "weak_config": {
+    "batch_size": 64,
+    "cond_base_channels": 64,
+    "cond_dim": 256,
+    "device": "mps",
+    "dropout": 0.1,
+    "dz_km": 0.5,
+    "epoch_metrics_filename": "epoch_metrics.csv",
+    "epoch_metrics_jsonl": "epoch_metrics.jsonl",
+    "epochs": 24,
+    "eval_num_samples": 4,
+    "eval_num_steps": 24,
+    "fig_dir": "/Users/yuziye/Documents/GitHub/physical-sensitivity-kernels/figures/fair_di_weak_full_seed642026",
+    "flow_beta": 0.5,
+    "flow_hidden": 1024,
+    "grad_clip": 5.0,
+    "init_checkpoint": null,
+    "lambda_curvature": 0.01,
+    "lambda_rec": 0.5,
+    "lambda_slope": 0.05,
+    "log_every_steps": 100,
+    "log_filename": "train.log",
+    "lr": 0.0002,
+    "mask_augment": true,
+    "mask_augment_val": true,
+    "mask_hole_point_prob": 0.04,
+    "mask_internal_holes_max": 6,
+    "mask_random_max_width_s": 45.0,
+    "mask_random_min_width_s": 15.0,
+    "mask_window_preset_prob": 0.65,
+    "mask_window_presets": [
+      [
+        2.0,
+        40.0
+      ],
+      [
+        10.0,
+        30.0
+      ],
+      [
+        5.0,
+        35.0
+      ],
+      [
+        15.0,
+        45.0
+      ]
+    ],
+    "min_lr": 1e-06,
+    "n_train": 100000,
+    "n_val": 2048,
+    "num_workers": 4,
+    "plot_every_steps": 0,
+    "plot_num_samples": 16,
+    "resume": false,
+    "save_dir": "/Users/yuziye/Documents/GitHub/physical-sensitivity-kernels/ckpt/fair_di_weak_full_seed642026",
+    "seed": 642026,
+    "stats_batches": 64,
+    "tectonic_type": null,
+    "time_dim": 64,
+    "use_amp": true,
+    "val_every": 1,
+    "weight_decay": 0.0001,
+    "z_max_km": 150.0,
+    "z_max_num": 256
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "protocol": {
+    "batch_size": 16,
+    "ckpt": "ckpt/fair_di_weak_full_seed642026/best.pt",
+    "device": "mps",
+    "euler_steps": 24,
+    "fig_dir": "figures/fair_di_comparison/production/missing_band",
+    "n_eval": 1024,
+    "out_dir": "results/fair_di_comparison/production/missing_band",
+    "posterior_samples": 64,
+    "prior": "weak",
+    "seed": 642026
+  },
+  "rows": [
+    {
+      "coverage_mean": 0.645538330078125,
+      "coverage_vs": 0.6383094787597656,
+      "n": 1024,
+      "valid_fraction_mean": 0.3509252667427063,
+      "valid_fraction_std": 0.15815050899982452,
+      "vs_mae": 0.16400378942489624,
+      "vs_spread_mean": 0.17863067984580994,
+      "window": "full-2-60"
+    },
+    {
+      "coverage_mean": 0.6367925008138021,
+      "coverage_vs": 0.6295394897460938,
+      "n": 1024,
+      "valid_fraction_mean": 0.23487156629562378,
+      "valid_fraction_std": 0.12900446355342865,
+      "vs_mae": 0.19171515107154846,
+      "vs_spread_mean": 0.20577079057693481,
+      "window": "p2-40"
+    },
+    {
+      "coverage_mean": 0.6151695251464844,
+      "coverage_vs": 0.6095237731933594,
+      "n": 1024,
+      "valid_fraction_mean": 0.13514631986618042,
+      "valid_fraction_std": 0.08849269151687622,
+      "vs_mae": 0.2757432460784912,
+      "vs_spread_mean": 0.28689348697662354,
+      "window": "p10-30"
+    },
+    {
+      "coverage_mean": 0.6367619832356771,
+      "coverage_vs": 0.6283912658691406,
+      "n": 1024,
+      "valid_fraction_mean": 0.24136817455291748,
+      "valid_fraction_std": 0.1106901690363884,
+      "vs_mae": 0.17728406190872192,
+      "vs_spread_mean": 0.19054009020328522,
+      "window": "p15-45"
+    },
+    {
+      "corr_valid_fraction_vs_mae": -0.44006273052235306,
+      "corr_valid_fraction_vs_spread": -0.5767157305241223,
+      "coverage_mean": 0.6297556559244791,
+      "coverage_vs": 0.6224327087402344,
+      "n": 1024,
+      "random_width_mean_s": 29.83017921447754,
+      "valid_fraction_mean": 0.1867717206478119,
+      "valid_fraction_std": 0.11508293449878693,
+      "vs_mae": 0.20845547318458557,
+      "vs_spread_mean": 0.2210589349269867,
+      "window": "random-window"
+    }
+  ]
+}

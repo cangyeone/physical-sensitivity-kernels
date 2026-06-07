@@ -1,0 +1,73 @@
+experiment_id: fair_di_full_100k_seed642026
+role: production
+prior: weak
+paired_config: configs/fair_di_strong_full.yaml
+
+train:
+  n_train: 100000
+  n_val: 2048
+  epochs: 24
+  batch_size: 64
+  num_workers: 4
+  seed: 642026
+  stats_batches: 64
+  z_max_km: 150.0
+  z_max_num: 256
+  dz_km: 0.5
+  resume: false
+  val_every: 1
+  log_every_steps: 100
+  plot_every_steps: 0
+  device: auto
+
+model:
+  cond_base_channels: 64
+  cond_dim: 256
+  flow_hidden: 1024
+  time_dim: 64
+  dropout: 0.1
+
+optimizer:
+  name: AdamW
+  lr: 2.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 1.0e-4
+  grad_clip: 5.0
+  use_amp: true
+  lr_schedule: cosine
+
+loss:
+  flow_loss: SmoothL1
+  flow_beta: 0.5
+  lambda_rec: 0.5
+  lambda_slope: 0.05
+  lambda_curvature: 0.01
+
+mask_augmentation:
+  enabled: true
+  validation_enabled: true
+  windows:
+    - [2.0, 40.0]
+    - [10.0, 30.0]
+    - [5.0, 35.0]
+    - [15.0, 45.0]
+  preset_prob: 0.65
+  random_min_width_s: 15.0
+  random_max_width_s: 45.0
+  internal_holes_max: 6
+  hole_point_prob: 0.04
+
+sampling:
+  train_eval_num_samples: 4
+  train_eval_num_steps: 24
+  evaluation_num_samples: 16
+  evaluation_num_steps: 24
+  plot_num_samples: 16
+
+output:
+  save_dir: ckpt/fair_di_weak_full_seed642026
+  fig_dir: figures/fair_di_weak_full_seed642026
+
+notes:
+  fairness_constraint: "Only structural prior generator differs from fair_di_strong_full.yaml."
+  warm_start: false

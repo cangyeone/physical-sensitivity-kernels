@@ -1,0 +1,154 @@
+{
+  "dnn_dir": "field_masw_results_fair_weak",
+  "interpretation": "Field comparison is a workflow diagnostic unless an independently trusted reference model is supplied.",
+  "masw_dir": "Bayan_Obo_Dataset/Subarray-Based MASW",
+  "reference_comparison": [
+    {
+      "depth_km": 2.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.13902762671036584,
+      "vs_difference_mae_km_s": 0.3098170666666667,
+      "vs_difference_mean_km_s": -0.3042937333333333,
+      "vs_difference_rmse_km_s": 0.342833272239826
+    },
+    {
+      "depth_km": 5.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.4328320762943897,
+      "vs_difference_mae_km_s": 0.21434493333333332,
+      "vs_difference_mean_km_s": -0.2036716,
+      "vs_difference_rmse_km_s": 0.23985534873057693
+    },
+    {
+      "depth_km": 10.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.5903237669597514,
+      "vs_difference_mae_km_s": 0.17398273333333336,
+      "vs_difference_mean_km_s": -0.14499606666666665,
+      "vs_difference_rmse_km_s": 0.20051258222365997
+    },
+    {
+      "depth_km": 20.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.32269988896167867,
+      "vs_difference_mae_km_s": 0.27350006666666665,
+      "vs_difference_mean_km_s": -0.27331873333333334,
+      "vs_difference_rmse_km_s": 0.2914369459111182
+    },
+    {
+      "depth_km": 40.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.880853877016211,
+      "vs_difference_mae_km_s": 0.36117433333333326,
+      "vs_difference_mean_km_s": -0.3603864666666666,
+      "vs_difference_rmse_km_s": 0.37399381698721523
+    },
+    {
+      "depth_km": 60.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.799073744764735,
+      "vs_difference_mae_km_s": 0.0831906,
+      "vs_difference_mean_km_s": -0.08273046666666665,
+      "vs_difference_rmse_km_s": 0.0946889776443559
+    },
+    {
+      "depth_km": 80.0,
+      "n_matched": 150,
+      "spatial_correlation": -0.10132820784882285,
+      "vs_difference_mae_km_s": 0.049432133333333336,
+      "vs_difference_mean_km_s": -0.04094253333333332,
+      "vs_difference_rmse_km_s": 0.06271076754965345
+    },
+    {
+      "depth_km": 100.0,
+      "n_matched": 150,
+      "spatial_correlation": 0.5460904227381803,
+      "vs_difference_mae_km_s": 0.026659666666666665,
+      "vs_difference_mean_km_s": 0.015464999999999982,
+      "vs_difference_rmse_km_s": 0.033330472893934975
+    }
+  ],
+  "reference_summary": "/Users/yuziye/Documents/GitHub/physical-sensitivity-kernels/field_masw_results_v13_p2_40/bayan_obo_masw_vs_depth_summary.csv",
+  "summary": [
+    {
+      "depth_km": 2.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.45834233333333335,
+      "vs_median_max": 3.17051,
+      "vs_median_mean": 2.7985684,
+      "vs_median_min": 2.53792,
+      "vs_median_std_spatial": 0.11370854174939247
+    },
+    {
+      "depth_km": 5.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.3269992,
+      "vs_median_max": 3.51377,
+      "vs_median_mean": 2.9816870000000004,
+      "vs_median_min": 2.76545,
+      "vs_median_std_spatial": 0.11859193878028416
+    },
+    {
+      "depth_km": 10.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.37771853333333333,
+      "vs_median_max": 3.66343,
+      "vs_median_mean": 3.166786866666667,
+      "vs_median_min": 2.86131,
+      "vs_median_std_spatial": 0.1672903081358338
+    },
+    {
+      "depth_km": 20.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.30239286666666665,
+      "vs_median_max": 4.18386,
+      "vs_median_mean": 3.8057280666666666,
+      "vs_median_min": 3.52613,
+      "vs_median_std_spatial": 0.0845157157353721
+    },
+    {
+      "depth_km": 40.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.18247446666666667,
+      "vs_median_max": 4.6224,
+      "vs_median_mean": 3.116203333333334,
+      "vs_median_min": 2.89979,
+      "vs_median_std_spatial": 0.2103037279861888
+    },
+    {
+      "depth_km": 60.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.05658733333333333,
+      "vs_median_max": 3.77902,
+      "vs_median_mean": 3.274682733333333,
+      "vs_median_min": 3.21888,
+      "vs_median_std_spatial": 0.04885871493598206
+    },
+    {
+      "depth_km": 80.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.0235802,
+      "vs_median_max": 3.55676,
+      "vs_median_mean": 3.5190448,
+      "vs_median_min": 3.48151,
+      "vs_median_std_spatial": 0.008331838350168189
+    },
+    {
+      "depth_km": 100.0,
+      "n_periods_used_mean": 39.0,
+      "n_subarrays": 150,
+      "posterior_std_mean": 0.023084466666666668,
+      "vs_median_max": 3.63302,
+      "vs_median_mean": 3.5607558000000004,
+      "vs_median_min": 3.53754,
+      "vs_median_std_spatial": 0.013339651333274555
+    }
+  ]
+}

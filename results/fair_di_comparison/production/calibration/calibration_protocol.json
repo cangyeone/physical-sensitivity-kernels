@@ -1,0 +1,15 @@
+{
+  "batch_size": 16,
+  "bootstrap": 2000,
+  "calibration_examples": 1024,
+  "device": "mps",
+  "euler_steps": 24,
+  "fig_dir": "figures/fair_di_comparison/production/calibration",
+  "n_eval": 2048,
+  "out_dir": "results/fair_di_comparison/production/calibration",
+  "posterior_samples": 64,
+  "rank_bins": 20,
+  "seed": 642026,
+  "strong_ckpt": "ckpt/fair_di_strong_full_seed642026/best.pt",
+  "weak_ckpt": "ckpt/fair_di_weak_full_seed642026/best.pt"
+}
