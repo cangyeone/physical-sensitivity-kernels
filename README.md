@@ -195,9 +195,9 @@ steps for the production synthetic statistics unless a table caption states
 otherwise. The production evaluation exports bootstrap confidence intervals,
 depth-binned coverage, reliability/rank diagnostics, missing-band uncertainty,
 additive-noise sensitivity, posterior-predictive residuals, deterministic DNN
-baselines and the Rayleigh-only Bayan Obo workflow demonstration. A project
-archive DOI has not yet been minted; the manuscript marks this as a submission
-blocker rather than inventing a DOI.
+baselines, sample-count/Euler-step sensitivity checks and the Rayleigh-only
+Bayan Obo workflow demonstration. Pre-submission archive tasks are tracked in
+`pre_submission_blockers.md`.
 
 ### 3. Validate Sensitivity Kernels
 

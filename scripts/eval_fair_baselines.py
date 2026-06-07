@@ -127,7 +127,7 @@ def plot_baseline_summary(rows: list[dict], fig_dir: Path) -> None:
         ax.bar(x + (j - (len(methods) - 1) / 2) * width, vals, width=width, label=method)
     ax.set_xticks(x)
     ax.set_xticklabels(["In-prior", "Boundary", "Out-of-prior"])
-    ax.set_ylabel("$V_S$ MAE (km/s)")
+    ax.set_ylabel(r"$V_S$ MAE (km s$^{-1}$)")
     ax.grid(axis="y", color="#e5e5e5", linewidth=0.5)
     ax.legend(frameon=False, fontsize=8)
     fig.tight_layout()

@@ -262,7 +262,7 @@ def plot_dispersion_qc(path: Path, period_grid: np.ndarray, disp: np.ndarray, ma
     ax.plot(period_grid[valid], np.nanmedian(ray[:, valid], axis=0), color="#d62728", lw=2.0, label="median")
     ax.set_xlim(float(period_grid[valid].min()), float(period_grid[valid].max()))
     ax.set_xlabel("Period (s)")
-    ax.set_ylabel("Rayleigh phase velocity (km/s)")
+    ax.set_ylabel(r"Rayleigh phase velocity (km s$^{-1}$)")
     ax.set_title("Bayan Obo subarray MASW dispersion picks", fontsize=12)
     ax.grid(True, color="0.90", lw=0.7)
     ax.legend(frameon=False)
@@ -373,7 +373,7 @@ def main() -> None:
         meta,
         depth,
         stats["median"][:, 1, :],
-        "Posterior median Vs (km/s)",
+        r"Posterior median $V_S$ (km s$^{-1}$)",
         [5.0, 10.0, 20.0, 40.0],
     )
     plot_slice_grid(
@@ -381,7 +381,7 @@ def main() -> None:
         meta,
         depth,
         stats["std"][:, 1, :],
-        "Posterior std Vs (km/s)",
+        r"Posterior std $V_S$ (km s$^{-1}$)",
         [5.0, 10.0, 20.0, 40.0],
     )
     if args.fig_dir is not None:

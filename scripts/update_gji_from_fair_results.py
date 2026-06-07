@@ -49,7 +49,7 @@ def build_validation_table(rows: list[dict]) -> str:
     weak = row_for(rows, "DI-Weak", "in-prior")
     n = int(float(strong["n"]))
     return rf"""\begin{{table*}}
-\caption{{Matched in-prior diagnostic statistics for DI-Strong and DI-Weak trained from scratch with identical budgets. Posterior summaries use the production sampling configuration recorded in the fair-comparison archive. Coverage is mean pointwise 16--84 per cent interval coverage over $V_P$, $V_S$ and density; bootstrap confidence intervals are reported in the archived CSV/JSON tables.}}
+\caption{{Matched in-prior diagnostic statistics for DI-Strong and DI-Weak trained from scratch with identical budgets. Posterior summaries use the production sampling configuration recorded in the fair-comparison result directory. Coverage is mean pointwise 16--84 per cent interval coverage over $V_P$, $V_S$ and density; bootstrap confidence intervals are reported in the CSV/JSON result tables.}}
 \label{{tab:validation}}
 \centering
 \begin{{tabular}}{{@{{}}lccccc@{{}}}}
@@ -75,7 +75,7 @@ def build_prior_table(rows: list[dict]) -> str:
             f"{fmt(r.get('pred_inside_given_target_outside', 'nan'))} \\\\"
         )
     return rf"""\begin{{table*}}
-\caption{{Matched prior-support diagnostic for DI-Strong and DI-Weak trained from scratch with identical budgets. The table is a prior-support reliability audit, not a general ranking of priors. Pull-in is the fraction of target values outside the strong-prior envelope whose posterior medians return inside that envelope. Bootstrap confidence intervals are archived with the full result tables.}}
+\caption{{Matched prior-support diagnostic for DI-Strong and DI-Weak trained from scratch with identical budgets. The table is a prior-support reliability audit, not a general ranking of priors. Pull-in is the fraction of target values outside the strong-prior envelope whose posterior medians return inside that envelope. Bootstrap confidence intervals are reported in the full result tables.}}
 \label{{tab:priorboundary}}
 \centering
 \begin{{tabular}}{{@{{}}llccccc@{{}}}}

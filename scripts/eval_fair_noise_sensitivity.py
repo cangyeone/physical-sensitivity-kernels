@@ -152,7 +152,7 @@ def plot_noise(rows: list[dict], fig_dir: Path) -> None:
             subset = [r for r in rows if r["method"] == method and r["test_set"] == "in-prior"]
             subset = sorted(subset, key=lambda r: float(r["noise_sigma_km_s"]))
             ax.plot([r["noise_sigma_km_s"] for r in subset], [r[metric] for r in subset], marker="o", label=method)
-        ax.set_xlabel("Noise sigma (km/s)")
+        ax.set_xlabel(r"Noise sigma (km s$^{-1}$)")
         ax.set_ylabel(ylabel)
         ax.grid(color="#e5e5e5", linewidth=0.5)
     axes[0].legend(frameon=False)

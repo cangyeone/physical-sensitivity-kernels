@@ -29,6 +29,7 @@ matplotlib.rcParams.update(
 )
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.tri import Triangulation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -220,12 +221,152 @@ def plot_baselines() -> None:
     finish(fig, "fair_baseline_metric_summary", ROOT / "figures/fair_di_comparison/production/baselines")
 
 
+def plot_example_profiles() -> None:
+    path = RESULT_DIR / "fair_di_diagnostics.npz"
+    if not path.exists():
+        return
+    data = np.load(path)
+    depth = np.linspace(0.0, 400.0, data["DI_Weak_in_prior_target"].shape[-1])
+    regimes = ["in_prior", "boundary", "out_of_prior"]
+    labels = ["In-prior", "Boundary", "Out-of-prior"]
+    fig, axes = plt.subplots(1, 3, figsize=(7.0, 4.8), sharey=True)
+    for ax, regime, label in zip(axes, regimes, labels):
+        target = data[f"DI_Weak_{regime}_target"][:, 1, :]
+        samples = data[f"DI_Weak_{regime}_samples"][:, :, 1, :]
+        median = np.median(samples, axis=1)
+        q16 = np.quantile(samples, 0.16, axis=1)
+        q84 = np.quantile(samples, 0.84, axis=1)
+        mae = np.mean(np.abs(median - target), axis=1)
+        idx = int(np.argsort(mae)[len(mae) // 2])
+        ax.fill_betweenx(depth, q16[idx], q84[idx], color=COLORS["DI-Weak"], alpha=0.20, linewidth=0)
+        ax.plot(target[idx], depth, color="#111111", linewidth=1.6, label="Truth" if ax is axes[0] else None)
+        ax.plot(median[idx], depth, color=COLORS["DI-Weak"], linewidth=1.8, label="Posterior median" if ax is axes[0] else None)
+        ax.set_title(label)
+        ax.set_xlabel(r"$V_S$ (km s$^{-1}$)")
+        ax.grid(color="#E5E5E5", linewidth=0.6)
+        ax.set_xlim(1.8, 6.4)
+    axes[0].set_ylabel("Depth (km)")
+    axes[0].invert_yaxis()
+    axes[0].legend(frameon=False, loc="lower right")
+    fig.tight_layout()
+    finish(fig, "fair_di_example_profiles", ROOT / "figures/fair_di_comparison/production")
+
+
+def _field_meta_to_dicts(meta: np.ndarray) -> list[dict[str, float]]:
+    return [
+        {
+            "subarray": int(row["subarray"]),
+            "lon": float(row["lon"]),
+            "lat": float(row["lat"]),
+            "period_min": float(row["period_min"]),
+            "period_max": float(row["period_max"]),
+            "n_periods_used": int(row["n_periods_used"]),
+            "rayleigh_mean_km_s": float(row["rayleigh_mean_km_s"]),
+        }
+        for row in meta
+    ]
+
+
+def plot_field_volume() -> None:
+    path = ROOT / "field_masw_results_fair_weak/bayan_obo_masw_dnn_posterior_volume.npz"
+    if not path.exists():
+        return
+    data = np.load(path, allow_pickle=True)
+    period = data["period_s"]
+    disp = data["disp"]
+    mask = data["mask"]
+    depth = data["depth_km"]
+    meta = _field_meta_to_dicts(data["meta"])
+
+    fig, ax = plt.subplots(figsize=(6.2, 3.8))
+    for i in range(len(disp)):
+        ok = mask[i, 1].astype(bool)
+        ax.plot(period[ok], disp[i, 1, ok], color="0.25", linewidth=0.45, alpha=0.25)
+    ray = np.where(mask[:, 1, :].astype(bool), disp[:, 1, :], np.nan)
+    valid = np.isfinite(ray).any(axis=0)
+    ax.plot(period[valid], np.nanmedian(ray[:, valid], axis=0), color="#D55E00", linewidth=2.0, label="Median")
+    ax.set_xlim(float(period[valid].min()), float(period[valid].max()))
+    ax.set_xlabel("Period (s)")
+    ax.set_ylabel(r"Rayleigh phase velocity (km s$^{-1}$)")
+    ax.grid(True, color="#E5E5E5", linewidth=0.6)
+    ax.legend(frameon=False)
+    fig.tight_layout()
+    finish(fig, "fair_field_dispersion_qc", ROOT / "figures/fair_di_comparison/production/field")
+
+    def slice_grid(field: np.ndarray, label: str, stem: str) -> None:
+        lon = np.asarray([m["lon"] for m in meta])
+        lat = np.asarray([m["lat"] for m in meta])
+        tri = Triangulation(lon, lat)
+        depths = [5.0, 10.0, 20.0, 40.0]
+        idxs = [int(np.argmin(np.abs(depth - z))) for z in depths]
+        scale = np.concatenate([field[:, iz] for iz in idxs])
+        vmin = float(np.nanpercentile(scale, 2))
+        vmax = float(np.nanpercentile(scale, 98))
+        fig, axes = plt.subplots(2, 2, figsize=(7.8, 5.8), sharex=True, sharey=True)
+        last = None
+        for ax, z, iz in zip(axes.ravel(), depths, idxs):
+            last = ax.tricontourf(tri, field[:, iz], levels=18, vmin=vmin, vmax=vmax, cmap="viridis")
+            ax.tricontour(tri, field[:, iz], colors="k", linewidths=0.25, alpha=0.35)
+            ax.scatter(lon, lat, s=5, c="k", alpha=0.35)
+            ax.set_title(f"{z:g} km")
+            ax.set_aspect("equal", adjustable="box")
+            ax.grid(True, color="#E5E5E5", linewidth=0.5)
+        for ax in axes[-1]:
+            ax.set_xlabel("Longitude")
+        for ax in axes[:, 0]:
+            ax.set_ylabel("Latitude")
+        cbar = fig.colorbar(last, ax=axes.ravel().tolist(), shrink=0.90, pad=0.02)
+        cbar.set_label(label)
+        finish(fig, stem, ROOT / "figures/fair_di_comparison/production/field")
+
+    slice_grid(data["median"][:, 1, :], r"Posterior median $V_S$ (km s$^{-1}$)", "fair_field_vs_median_slices")
+    slice_grid(data["std"][:, 1, :], r"Posterior std $V_S$ (km s$^{-1}$)", "fair_field_vs_std_slices")
+
+
+def plot_field_summary() -> None:
+    summary_path = RESULT_DIR / "field/field_summary.csv"
+    comparison_path = RESULT_DIR / "field/field_reference_comparison.csv"
+    if not summary_path.exists():
+        return
+    summary = read_csv(summary_path)
+    depth = np.asarray([as_float(r, "depth_km") for r in summary])
+    vs = np.asarray([as_float(r, "vs_median_mean") for r in summary])
+    std = np.asarray([as_float(r, "posterior_std_mean") for r in summary])
+    fig, ax = plt.subplots(figsize=(3.4, 5.2))
+    ax.plot(vs, depth, color=COLORS["DI-Weak"], label="Field mean median")
+    ax.fill_betweenx(depth, vs - std, vs + std, color=COLORS["DI-Weak"], alpha=0.18, label="Mean posterior std")
+    ax.invert_yaxis()
+    ax.set_xlabel(r"$V_S$ (km s$^{-1}$)")
+    ax.set_ylabel("Depth (km)")
+    ax.grid(color="#E5E5E5", linewidth=0.6)
+    ax.legend(frameon=False, fontsize=8)
+    fig.tight_layout()
+    finish(fig, "fair_field_summary_vs_depth", ROOT / "figures/fair_di_comparison/production/field")
+
+    if comparison_path.exists():
+        comparison = read_csv(comparison_path)
+        if comparison:
+            depth = np.asarray([as_float(r, "depth_km") for r in comparison])
+            mae = np.asarray([as_float(r, "vs_difference_mae_km_s") for r in comparison])
+            fig, ax = plt.subplots(figsize=(3.4, 5.2))
+            ax.plot(mae, depth, color=COLORS["IND-FWD"])
+            ax.invert_yaxis()
+            ax.set_xlabel(r"Reference difference MAE (km s$^{-1}$)")
+            ax.set_ylabel("Depth (km)")
+            ax.grid(color="#E5E5E5", linewidth=0.6)
+            fig.tight_layout()
+            finish(fig, "fair_field_reference_difference", ROOT / "figures/fair_di_comparison/production/field")
+
+
 def main() -> None:
     plot_metric_summary()
+    plot_example_profiles()
     plot_reliability()
     plot_missing_band()
     plot_noise()
     plot_baselines()
+    plot_field_volume()
+    plot_field_summary()
     print(f"Wrote review figures to {GJI_FIG_DIR}")
 
 

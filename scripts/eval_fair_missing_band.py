@@ -131,7 +131,7 @@ def plot(rows: list[dict], per_example: dict, fig_dir: Path) -> None:
     for ax, metric, ylabel, color in zip(
         axes,
         ["vs_mae", "vs_spread_mean", "coverage_vs"],
-        ["$V_S$ MAE (km/s)", "$V_S$ posterior std", "$V_S$ coverage"],
+        ["$V_S$ MAE (km s$^{-1}$)", "$V_S$ posterior std", "$V_S$ coverage"],
         ["#3b82c4", "#e69f00", "#6aa84f"],
     ):
         ax.bar(x, [r[metric] for r in rows], color=color, alpha=0.82)

@@ -303,7 +303,7 @@ def plot_metric_summary(rows: List[Dict[str, object]], fig_dir: Path) -> None:
     for ax, metric, title in zip(
         axes,
         ["vs_mae", "coverage_vs", "pred_disp_mae"],
-        [r"$V_S$ MAE (km/s)", r"$V_S$ 16--84% coverage", "Dispersion residual MAE"],
+        [r"$V_S$ MAE (km s$^{-1}$)", r"$V_S$ 16--84% coverage", "Dispersion residual MAE"],
     ):
         width = 0.35
         x = np.arange(len(tests))
@@ -368,7 +368,7 @@ def plot_example_profiles(diagnostics: Dict[str, Dict[str, np.ndarray]], fig_dir
         ax.grid(color="#e5e5e5", linewidth=0.5)
         ax.set_xlim(0.0, 6.2)
     for ax in axes[-1, :]:
-        ax.set_xlabel(r"$V_S$ (km/s)", fontsize=9)
+        ax.set_xlabel(r"$V_S$ (km s$^{-1}$)", fontsize=9)
     fig.tight_layout()
     fig.savefig(fig_dir / "fair_di_example_profiles.pdf", bbox_inches="tight")
     fig.savefig(fig_dir / "fair_di_example_profiles.png", dpi=300, bbox_inches="tight")
