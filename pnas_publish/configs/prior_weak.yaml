@@ -1,0 +1,39 @@
+# Weak-prior settings for the prior-boundary diagnostic experiment.
+#
+# The current training scripts are mostly code-configured rather than YAML-driven.
+# scripts/eval_prior_boundary_effect.py records this file and uses the ranges
+# below as the intended weak-prior envelope when a weak direct-inversion
+# checkpoint is trained or supplied.
+
+name: prior_weak
+depth:
+  z_max_km: 150.0
+  dz_km: 0.5
+  n_depth: 300
+
+dispersion:
+  period_min_s: 2.0
+  period_max_s: 80.0
+  n_periods: 64
+  waves: [rayleigh, love]
+
+elastic_ranges:
+  vp_km_s: [0.8, 10.5]
+  vs_km_s: [0.15, 5.8]
+  rho_g_cm3: [1.2, 3.8]
+  vp_over_vs: [1.45, 2.35]
+
+structure_ranges:
+  sediment_thickness_km: [0.0, 25.0]
+  moho_depth_km: [8.0, 95.0]
+  upper_mantle_vs_km_s: [3.4, 5.8]
+  lvz_center_depth_km: [25.0, 180.0]
+  lvz_width_km: [10.0, 90.0]
+  lvz_amplitude_fraction: [0.0, 0.35]
+
+regularization:
+  hard_clip: reduced
+  physical_constraints:
+    - vp_gt_vs
+    - vs_positive
+    - density_reasonable

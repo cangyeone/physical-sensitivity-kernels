@@ -1,0 +1,32 @@
+{
+  "DI-Strong_boundary": {
+    "calibration_examples": 1024,
+    "temperature_scale": 3.1604708434897475,
+    "test_examples": 1024
+  },
+  "DI-Strong_in-prior": {
+    "calibration_examples": 1024,
+    "temperature_scale": 1.1143370271893218,
+    "test_examples": 1024
+  },
+  "DI-Strong_out-of-prior": {
+    "calibration_examples": 1024,
+    "temperature_scale": 4.584499597593094,
+    "test_examples": 1024
+  },
+  "DI-Weak_boundary": {
+    "calibration_examples": 1024,
+    "temperature_scale": 1.6867197157116607,
+    "test_examples": 1024
+  },
+  "DI-Weak_in-prior": {
+    "calibration_examples": 1024,
+    "temperature_scale": 1.3162832857342437,
+    "test_examples": 1024
+  },
+  "DI-Weak_out-of-prior": {
+    "calibration_examples": 1024,
+    "temperature_scale": 3.3353277445421554,
+    "test_examples": 1024
+  }
+}
